@@ -2,6 +2,7 @@ import time
 import random
 import psutil
 import platform
+import os
 
 def print_os_info():
     print("OS Information:")
@@ -19,6 +20,19 @@ def print_system_stats():
     print(f"CPU Usage: {cpu_usage}%")
     print(f"Memory Usage: {memory_usage}%")
     print()
+
+    dump_output_files(cpu_usage, memory_usage)
+
+def dump_output_files(cpu_usage, memory_usage):
+    print("Dumping output files with system stats...")
+    cpu_log = "cpu_usage.log"
+    memory_log = "memory_usage.log"
+    
+    os.system(f"echo {cpu_usage} > {cpu_log}")
+    os.system(f"echo {memory_usage} > {memory_log}")
+    
+    print(f"Collect CPU Usage log: {cpu_log}")
+    print(f"Collect Memory Usage log: {memory_log}")
 
 def main(sleep_time):
     print("Hello, world!")
