@@ -33,6 +33,7 @@ def dump_output_files(cpu_usage, memory_usage):
     
     print(f"Collect CPU Usage log: {cpu_log}")
     print(f"Collect Memory Usage log: {memory_log}")
+    print()
 
 def main(sleep_time):
     print("Hello, world!")
