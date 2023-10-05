@@ -31,8 +31,8 @@ def dump_output_files(cpu_usage, memory_usage):
     os.system(f"echo {cpu_usage} > {cpu_log}")
     os.system(f"echo {memory_usage} > {memory_log}")
     
-    print(f"Collect CPU Usage log: {cpu_log}")
-    print(f"Collect Memory Usage log: {memory_log}")
+    print(f"Collect CPU Usage log: {os.path.abspath(cpu_log)}")
+    print(f"Collect Memory Usage log: {os.path.abspath(memory_log)}")
     print()
 
 def main(sleep_time):
