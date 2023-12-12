@@ -1,3 +1,4 @@
+import datetime
 import os
 import platform
 import psutil
@@ -27,8 +28,9 @@ def print_system_stats():
 def dump_output_files(cpu_usage, memory_usage):
     print("Dumping output files with system stats...")
     hostname = socket.gethostname()
-    cpu_log = f"{hostname}_cpu_usage.log"
-    memory_log = f"{hostname}_memory_usage.log"
+    ts = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d-%H-%M-%S')
+    cpu_log = f"{hostname}_cpu_usage_{ts}.log"
+    memory_log = f"{hostname}_memory_usage_{ts}.log"
     
     os.system(f"echo {cpu_usage} > {cpu_log}")
     os.system(f"echo {memory_usage} > {memory_log}")
