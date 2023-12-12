@@ -29,7 +29,7 @@ def print_system_stats(args):
 def dump_output_files(cpu_usage, memory_usage, args):
     print("Dumping output files with system stats...")
     
-    label = socket.gethostname() if not args else args[1]
+    label = socket.gethostname() if not len(args) else args[0]
     ts = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d-%H-%M-%S')
     cpu_log = f"{label}_cpu_usage_{ts}.log"
     memory_log = f"{label}_memory_usage_{ts}.log"
