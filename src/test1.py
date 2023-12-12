@@ -1,8 +1,9 @@
-import time
-import random
-import psutil
-import platform
 import os
+import platform
+import psutil
+import random
+import socket
+import time
 
 def print_os_info():
     print("OS Information:")
@@ -25,8 +26,9 @@ def print_system_stats():
 
 def dump_output_files(cpu_usage, memory_usage):
     print("Dumping output files with system stats...")
-    cpu_log = "cpu_usage.log"
-    memory_log = "memory_usage.log"
+    hostname = socket.gethostname()
+    cpu_log = f"{hostname}_cpu_usage.log"
+    memory_log = f"{hostname}_memory_usage.log"
     
     os.system(f"echo {cpu_usage} > {cpu_log}")
     os.system(f"echo {memory_usage} > {memory_log}")
