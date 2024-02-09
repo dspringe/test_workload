@@ -47,8 +47,7 @@ def dump_output_files(cpu_usage, memory_usage, cpu_count, boot_time, args):
     
     print(f"Collect CPU Usage log: {os.path.abspath(cpu_log)}")
     print(f"Collect Memory Usage log: {os.path.abspath(memory_log)}")
-    print(f"Collect Memory Usage log: {os.path.abspath(cpu_log2)}")
-    print(f"Collect Memory Usage log: {os.path.abspath(boot_time_log)}")
+    print(f"Collect other_results dir: {os.path.abspath('other_results/')}")
     print()
 
 def main(sleep_time, args):
