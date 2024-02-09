@@ -35,10 +35,10 @@ def dump_output_files(cpu_usage, memory_usage, cpu_count, boot_time, args):
     ts = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d-%H-%M-%S')
     cpu_log = f"{label}_cpu_usage_{ts}.log"
     memory_log = f"{label}_memory_usage_{ts}.log"
-    cpu_log2 = os.path.join("other_results", f"{label}_cpu_count_{ts}.log")
-    boot_time_log = os.path.join("other_results", "boot_results", f"{label}_boot_time_{ts}.log")
+    cpu_log2 = os.path.join(f"other_results_{label}", f"{label}_cpu_count_{ts}.log")
+    boot_time_log = os.path.join(f"other_results_{label}", "boot_results", f"{label}_boot_time_{ts}.log")
     
-    os.makedirs("other_results/boot_results/")
+    os.makedirs(f"other_results_{label}/boot_results/")
     
     os.system(f"echo {cpu_usage} > {cpu_log}")
     os.system(f"echo {memory_usage} > {memory_log}")
