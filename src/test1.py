@@ -19,26 +19,35 @@ def print_system_stats(args):
     print("System Stats:")
     cpu_usage = psutil.cpu_percent()
     memory_usage = psutil.virtual_memory().percent
+    cpu_count = psutil.cpu_count()
+    boot_time = psutil.boot_time()
 
     print(f"CPU Usage: {cpu_usage}%")
     print(f"Memory Usage: {memory_usage}%")
     print()
 
-    dump_output_files(cpu_usage, memory_usage, args)
+    dump_output_files(cpu_usage, memory_usage, cpu_count, boot_time, args)
 
-def dump_output_files(cpu_usage, memory_usage, args):
+def dump_output_files(cpu_usage, memory_usage, cpu_count, boot_time, args):
     print("Dumping output files with system stats...")
     
     label = socket.gethostname() if not len(args) else args[0]
     ts = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d-%H-%M-%S')
     cpu_log = f"{label}_cpu_usage_{ts}.log"
     memory_log = f"{label}_memory_usage_{ts}.log"
+    cpu_log2 = os.path.join(f"other_results_{label}", f"{label}_cpu_count_{ts}.log")
+    boot_time_log = os.path.join(f"other_results_{label}", "boot_results", f"{label}_boot_time_{ts}.log")
+    
+    os.makedirs(f"other_results_{label}/boot_results/")
     
     os.system(f"echo {cpu_usage} > {cpu_log}")
     os.system(f"echo {memory_usage} > {memory_log}")
+    os.system(f"echo {cpu_count} > {cpu_log2}")
+    os.system(f"echo {boot_time} > {boot_time_log}")
     
     print(f"Collect CPU Usage log: {os.path.abspath(cpu_log)}")
     print(f"Collect Memory Usage log: {os.path.abspath(memory_log)}")
+    print(f"Collect other_results dir: {os.path.abspath(f'other_results_{label}/')}")
     print()
 
 def main(sleep_time, args):
